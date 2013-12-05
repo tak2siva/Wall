@@ -1,10 +1,18 @@
 <div style="width:100%;">
   <div style="float:left;width:30%;">
-    <ul>  
-  <% @fellows.each do |user| %>
-	  <%= "<li><a href='/users/#{user.id}/posts'>#{user.email}</a></li>".html_safe %>
-  <%  end %>
-  </ul>
+    <table>  
+      <%# <th><td width="35%"></td><td width="65%"></td></th> %>
+      <% @fellows.each do |user| %>
+	<tr><td rowspan="3" bgcolor="#00FF00">Picture</td><td></td></tr>
+	<tr><td></td><td>
+	    <%= "<a href='/users/#{user.id}/posts'>#{user.email}</a>".html_safe %>
+	    <%#= "<li><a href='/users/#{user.id}/posts'>#{user.email}</a></li>".html_safe %>
+	</td></tr>
+	<tr><td></td><td style="float:right;">
+	    <a href='#'>Follow</a>
+	</td></tr>
+      <%  end %>
+    </table>
   </div>
   <div style="float:right;">
   </div>
