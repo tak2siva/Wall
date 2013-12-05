@@ -4,6 +4,8 @@ Wall::Application.routes.draw do
   resources :posts
 
   resources :home
+
+  match '/users/:user_id/posts/' => 'posts#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

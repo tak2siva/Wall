@@ -1,4 +1,4 @@
-<h1>Listing posts</h1>
+<h1>Posts by <%= @user_mail%></h1>
 
 <table>
   <tr>
@@ -13,13 +13,14 @@
   <tr>
     <td><%= post.title %></td>
     <td><%= post.post %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%= "<td> #{link_to 'Show', post} </td>".html_safe if @editable %>
+    <%# @editable used to avoid edit button on friends profile %>
+    <%= "<td> #{link_to 'Edit', edit_post_path(post)} </td>".html_safe if @editable %>
+    <%= "<td> #{link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }} </td>".html_safe if @editable%>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_post_path if @editable%>

@@ -1,7 +1,12 @@
 <div style="width:100%;">
-	<div style="float:left;width:30%;">
-		
-	</div>
-	<div style="float:right;">
-	</div>
+  <div style="float:left;width:30%;">
+    <ul>  
+  <% @fellows.each do |user| %>
+	  <%= "<li><a href='/users/#{user.id}/posts'>#{user.email}</a></li>".html_safe %>
+  <%  end %>
+  </ul>
+  </div>
+  <div style="float:right;">
+  </div>
 </div>
+<div style="clear:both"></div>

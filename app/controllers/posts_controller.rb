@@ -3,7 +3,15 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(:user_id=>current_user.id)
+    @editable = true
+    if params["user_id"].blank?
+      @posts = Post.where(:user_id=>current_user.id)
+      @user_mail = "You"
+    else 
+      @editable = false
+      @posts = Post.where(:user_id=>params["user_id"])
+      @user_mail = User.find(params["user_id"]).email
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +22,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

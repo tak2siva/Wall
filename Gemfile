@@ -10,6 +10,10 @@ gem 'therubyracer'
 
 gem 'devise'
 
+group :development do
+  gem 'debugger'
+end
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
