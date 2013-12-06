@@ -6,6 +6,11 @@ Wall::Application.routes.draw do
   resources :home
 
   match '/users/:user_id/posts/' => 'posts#index'
+
+  match '/follow/:user_id' => 'follow#add_follow'
+
+  match '/follow/add_follow/:user_id' => 'follow#add_follow', :via => [:post,:put]
+  match '/follow/un_follow/:user_id' => 'follow#un_follow', :via => [:post,:put]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

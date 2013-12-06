@@ -1,0 +1,7 @@
+$('#add_follow_<%= @fellow.id %>').html(
+'<div id=<%= "add_follow_#{@fellow.id}" %>>' +
+'<%= form_tag('/follow/add_follow/'+ @fellow.id.to_s,method: :put,remote: true) do %>' +
+'  <%= submit_tag "Follow" %>' +
+'<% end %>' +
+'</div>'
+);

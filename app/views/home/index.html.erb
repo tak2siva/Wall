@@ -1,5 +1,5 @@
 <div style="width:100%;">
-  <div style="float:left;width:30%;">
+  <div style="float:right;width:30%;">
     <table>  
       <%# <th><td width="35%"></td><td width="65%"></td></th> %>
       <% @fellows.each do |user| %>
@@ -9,12 +9,49 @@
 	    <%#= "<li><a href='/users/#{user.id}/posts'>#{user.email}</a></li>".html_safe %>
 	</td></tr>
 	<tr><td></td><td style="float:right;">
-	    <a href='#'>Follow</a>
+	    <div id=<%= "add_follow_#{user.id}" %>>
+	    <%= form_tag('/follow/add_follow/'+user.id.to_s,method: :put,remote: true) do %>
+	    <%= submit_tag 'Follow' %>
+	    <% end %>
+	    </div>
+	    <!-- <a href='/follow/<%= user.id %>'>Follow</a> -->
 	</td></tr>
       <%  end %>
     </table>
   </div>
-  <div style="float:right;">
+  <div style="width:40%;">
+    <table>
+      <% unless @feed.blank? %>
+	<% @feed.each do |feed| %>
+	  <table>
+	    <tr><td><%= feed.user.email %></td></tr>
+	    <tr><td><%= feed.title %></td></tr>
+	    <tr><td><%= feed.post %></td></tr>
+	  </table>
+	<% end %>
+      <% end %>
+    </table>
+  </div>
+  <div style="float:left;width:30%">
+    <table>  
+      <%# <th><td width="35%"></td><td width="65%"></td></th> %>
+      <% @followings.each do |user| %>
+	<tr><td rowspan="3" bgcolor="#00FF00">Picture</td><td></td></tr>
+	<tr><td></td><td>
+	    <%= "<a href='/users/#{user.id}/posts'>#{user.email}</a>".html_safe %>
+	    <%#= "<li><a href='/users/#{user.id}/posts'>#{user.email}</a></li>".html_safe %>
+	</td></tr>
+	<tr><td></td><td style="float:right;">
+	    <div id=<%= "add_follow_#{user.id}" %>>
+	    <%= form_tag('/follow/un_follow/'+user.id.to_s,method: :put,remote: true) do %>
+	    <%= submit_tag 'UnFollow' %>
+	    <% end %>
+	    </div>
+	    <!-- <a href='/follow/<%= user.id %>'>Follow</a> -->
+	</td></tr>
+      <%  end %>
+    </table>
+
   </div>
 </div>
 <div style="clear:both"></div>
