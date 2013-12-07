@@ -11,6 +11,8 @@ Wall::Application.routes.draw do
 
   match '/follow/add_follow/:user_id' => 'follow#add_follow', :via => [:post,:put]
   match '/follow/un_follow/:user_id' => 'follow#un_follow', :via => [:post,:put]
+
+  match '/users/:user_id/profile' => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
